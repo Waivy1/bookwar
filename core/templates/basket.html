@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+   <div div class="col-md-4">
+       <div class="row">
+           <ul>
+               <li>
+                   <form class="form-inline my-2 my-lg-0">
+                    
+                    </form>
+               </li>
+           </ul>
+       </div>
+
+       {% for basket in user_basket %}
+          <!--basket == {item_id=1, user_id=1} -->
+
+         <div class="row">
+            <div class="card border-warning mb-3" style="max-width: 20rem;">
+              <div class="card-header">{{ basket.item_id.price}}</div>
+              <div class="card-title">{{ basket.item_id.name }}</div>
+              <img src="{{ basket.item_id.picture }}" height="60%" width="30%">
+              <div class="card-text">{{ basket.item_id.categories_id.name }}</div>
+              <a href='/remove_from_basket/{{ basket.item_id.id }}'>
+                <button type="button" class="btn btn-danger">X</button>
+              </a>
+            </div>
+
+         </div>
+        {% endfor %}
+
+   </div>
+
+  <div class="button">
+     <a href='/confirm_order'>
+        <button type="button" class="btn btn-success">Confirm</button>
+     </a>
+
+     <div class="alert alert-dismissible alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+</div>
+  </div>
+
+  </div>
+
+</div>
+
+
+
+{% endblock content %}

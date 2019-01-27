@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.css">
+    <meta charset="UTF-8">
+    <title>Title {{ hour }}:{{ minute }}</title>
+ 
+<style type="text/css">
+{% block extra_css %}
+   #xxx{
+     
+    }
+
+{% endblock extra_css %}
+</style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" id='xxx' href="/"> 
+     <p>Дратуті</p> 
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'discounts' %}">Discounts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'about_me' %}">About shop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'delivery' %}">Delivery</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'payment' %}">Payment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'bonuses' %}">Bonuses</a>
+      </li>
+
+      {% if request.session.user_id %}
+
+<!--how it should be:  if not request.session.user_id without else -->
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'sign_up' %}">sign up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">log in</a>
+        </li>
+      {% endif %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="/basket">Basket</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    {% block categories_block %}
+   <div class="col-md-3">
+     <ul class="menu">
+       <li><a href=/all_categories>Categories</a>
+        
+        {% for category in categories %}
+          <ul class="submenu">
+              <ul><a href="/category/{{ category.id }}">{{ category.name }}</a>
+              </ul>
+          </ul>
+        {% endfor %}
+       </li>
+      </ul>
+         </div>
+    {% endblock categories_block %}
+
+
+
+<div class="col-md-9">      
+  <div class="row">
+    {% block content %}
+
+    {% endblock content %}
+  </div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+       {% for book in books %}
+         <div class="col-md-4">
+            <div class="card border-warning mb-3" style="max-width: 20rem;">
+              <div class="card-header">{{ book.name }}</div>
+              <div class="card-body">
+                <h4 class="card-title">{{ book.categories_id.name }}</h4>
+                <img src="{{ book.picture }}" height="112" width="82">
+                <p class="card-text">{{ book.price }} $</p>
+                <a href="/add_basket/{{ book.id }}"> <button type="button" class="btn btn-success add-basket">+</button></a>
+              </div>
+            </div>
+         </div>
+
+        {% if forloop.counter|divisibleby:3 %}
+          </div> 
+
+          <div class="row">
+        {% endif %}
+        {% endfor %}
+      </div>
+
+{% endblock content %}
