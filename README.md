@@ -1,4 +1,4 @@
-My first attempt to create a django project with a database, templates and views.
+**My first attempt to create a django project with a database, templates and views.**
 
 This is a simple book store project
 
